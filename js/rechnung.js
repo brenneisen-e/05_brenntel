@@ -479,7 +479,8 @@
       number: number,
       total: $('p-total').textContent,
       paid: $('f-paystatus').value === 'paid',
-      paidDate: formatDateDE($('f-paiddate').value),
+      // Ohne Datum keine Zeile „Erhalten am —“ in der Mail
+      paidDate: $('f-paiddate').value ? formatDateDE($('f-paiddate').value) : '',
       dueDate: formatDateDE(addDays($('f-date').value || todayISO(),
                                     parseInt($('f-paydays').value, 10) || 0)),
       company: $('f-company').value.trim(),
